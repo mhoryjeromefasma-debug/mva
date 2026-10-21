@@ -9,7 +9,7 @@ let seen=false;try{seen=sessionStorage.getItem('mjaIntro')==='1'}catch(e){}
 const fromTransition=document.documentElement.classList.contains('cover');
 
 /* typed roles */
-const roles=['Keyword Researcher','On-Page SEO Optimizer','Technical SEO Auditor','Link Building Strategist','Organic Growth Specialist'];
+const roles=['Keyword Researcher','On-Page Specialist','Technical Auditor','Link Building Strategist','Organic Growth Specialist'];
 let started=false;
 function typer(){
   if(started)return;started=true;const el=$('#typed');
@@ -58,7 +58,7 @@ if(fromTransition||!intro){
 
 /* download profile */
 $('#download').onclick=()=>{
-  const t='MC VHEN ASMA\nSEO Specialist (Search Engine Optimization)\n\nLocation: Misamis Oriental, Mindanao, Philippines\n\nSUMMARY\nSearch Engine Optimization specialist focused on helping websites rank higher, earn organic traffic and grow online. Known for discipline, honest communication, adaptability and a strong sense of accountability.\n\nCORE STRENGTHS\n- Keyword Research\n- On-Page Optimization\n- Technical SEO\n- Link Building\n- Analytics & Reporting\n- Continuous Learning\n\nNOTE: Add verified education, experience, certifications and project links before using as a formal CV.\nContact: '+SITE.email;
+  const t='MC VHEN ASMA\nSEO Specialist (Search Engine Optimization)\n\nLocation: Misamis Oriental, Mindanao, Philippines\nLanguages: English, Tagalog, Cebuano\n\nSUMMARY\nSearch Engine Optimization specialist focused on helping websites rank higher, earn organic traffic and grow online. Known for discipline, honest communication, adaptability and a strong sense of accountability.\n\nCORE SERVICES\n• Keyword Research\n• On-Page Optimization\n• Technical SEO\n• Link Building\n• Analytics & Reporting\n• Continuous Learning\n\nContact: '+SITE.email;
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));a.download='Mc-Vhen-Asma-Profile.txt';a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href),500);MJA.toast('Profile downloaded');
 };

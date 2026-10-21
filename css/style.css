@@ -269,3 +269,31 @@ body.leaving .side{opacity:1}
 @keyframes fadeAway{to{opacity:0;transform:translate3d(0,-.6rem,0)}}
 body.fadein .page{animation:fadeIn .7s cubic-bezier(.22,1,.36,1) both}
 @keyframes fadeIn{from{opacity:0;transform:translate3d(0,.8rem,0)}to{opacity:1;transform:none}}
+
+
+/* =====================================================
+   PHONE MENU: small dropdown under the menu button (top right).
+   The page stays visible behind it. Tap outside or scroll to close.
+   ===================================================== */
+@media(max-width:900px){
+  .side{
+    position:fixed;inset:auto;top:4.7rem;right:.9rem;left:auto;
+    width:min(14.5rem,calc(100vw - 1.8rem));height:auto;max-height:calc(100dvh - 6rem);
+    padding:.5rem;border:1px solid var(--line2);border-radius:1.1rem;
+    background:#0c0c0a;box-shadow:0 1.2rem 2.4rem rgba(0,0,0,.65);
+    z-index:130;overflow:hidden;
+    opacity:0;visibility:hidden;pointer-events:none;
+    transform:translate3d(0,-.5rem,0) scale(.97);transform-origin:top right;
+    transition:opacity .25s ease,transform .3s var(--ease),visibility 0s linear .3s;
+  }
+  body.menu-open .side{
+    opacity:1;visibility:visible;pointer-events:auto;transform:none;
+    transition:opacity .25s ease,transform .3s var(--ease),visibility 0s;
+  }
+  .side::before,.side::after{display:none}
+  .side .brand,.side .side-foot{display:none}
+  .nav-list{flex:none;min-height:0;padding:0;gap:.15rem}
+  .nav-list a{font-size:1rem;padding:.75rem .9rem;color:var(--w)}
+  .nav-list a:hover{transform:none}
+  .nav-list a.active{background:rgba(255,106,0,.12)}
+}

@@ -32,6 +32,7 @@ if(grid&&window.PLACES){
   grid.innerHTML=PLACES.map((p,i)=>`<article class="project a z" style="--d:${(0.12+i*0.08).toFixed(2)}s" data-cat="${p.cat}" tabindex="0" data-title="${esc(p.name)}" data-area="${esc(p.area)}" data-q="${esc(p.q||p.name+' '+p.area)}" data-desc="${esc(p.desc)}">
     <div class="art">${mapSVG(p,i)}<span class="maptag"><i></i>${esc(p.area)}</span><span class="mapzoom" aria-hidden="true"><b>+</b><b>−</b></span></div>
     <div class="pbody"><span class="ptag">${TAG[p.cat]||'Place'} · ${esc(p.area.split(',')[0])}</span><h3>${esc(p.name)}</h3><p>${esc(p.short)}</p><div class="pmore"><span>View on map</span><i>↗</i></div></div></article>`).join('');
+  if(window.MJA&&MJA.reveal)$$('.project').forEach(MJA.reveal);
 }
 let busy=0;
 $$('.filter').forEach(b=>b.addEventListener('click',()=>{

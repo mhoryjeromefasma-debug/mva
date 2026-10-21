@@ -81,6 +81,10 @@ addEventListener('keydown',e=>{
 /* ---------- mobile menu ---------- */
 const burger=$('#burger');
 if(burger)burger.addEventListener('click',()=>{const o=body.classList.toggle('menu-open');burger.setAttribute('aria-expanded',o)});
+function shut(){if(!body.classList.contains('menu-open'))return;closeMenu();if(burger)burger.setAttribute('aria-expanded','false')}
+document.addEventListener('pointerdown',e=>{if(e.target.closest('.side')||e.target.closest('#burger'))return;shut()});
+addEventListener('scroll',shut,{passive:true});
+addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
 
 /* ---------- auto-hide sidebar: open while the mouse is on the left side ---------- */
 (function(){
@@ -128,6 +132,8 @@ if(fine&&!reduce){
   if(!matchMedia('(max-width:900px)').matches||secs.length<2)return;
   const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}}),{threshold:.1});
   document.querySelectorAll('.m-only .a').forEach(el=>rv.observe(el));
+  window.MJA.reveal=el=>rv.observe(el);
+  addEventListener('load',()=>document.querySelectorAll('.m-only .a:not(.in)').forEach(el=>rv.observe(el)));
   const links=[...document.querySelectorAll('.side .nav-list a')];
   const sp=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
     links.forEach(a=>{const on=a.getAttribute('href').replace('.html','').replace('index','home')===e.target.id;a.classList.toggle('active',on)})}),{rootMargin:'-40% 0px -55% 0px'});

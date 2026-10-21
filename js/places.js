@@ -16,7 +16,7 @@ window.PLACES = [
     desc:'A mall in the city center of Cagayan de Oro, easy to reach and a popular meeting point for shopping and dining.' },
   { cat:'beach', name:'Macalajar Beach',       area:'Villanueva, Misamis Oriental', q:'Macalajar Beach Villanueva Misamis Oriental',
     short:'Beachfront getaway right here in Misamis Oriental.',
-    desc:'A beachfront in Villanueva, Misamis Oriental — a close beach escape for people from Cagayan de Oro and nearby towns.' },
+    desc:'A beachfront in Villanueva, Misamis Oriental, and a close beach escape for people from Cagayan de Oro and nearby towns.' },
   { cat:'beach', name:'White Island',          area:'Camiguin, Northern Mindanao', q:'White Island Camiguin',
     short:'A white sandbar with Mt. Hibok-Hibok in view.',
     desc:'A white sandbar off the coast of Camiguin with open sea all around and a view of the island’s volcano.' },

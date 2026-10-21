@@ -20,5 +20,5 @@ MGA FILE
 PALITAN BAGO I-PUBLISH
 - Email: js/config.js
 - Picture: images/profile.jpg
-- Social links: nasa sidebar ng bawat .html (instagram.com, facebook.com, atbp.)
+- Email, Facebook at LinkedIn links: js/config.js
 - Idagdag ang totoong education, experience, at SEO projects/results kapag meron na
