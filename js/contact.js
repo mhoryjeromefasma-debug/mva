@@ -6,6 +6,7 @@ const $=(s,r=document)=>r.querySelector(s);
 $('#emailShow').textContent=SITE.email;
 const fb=$('#fbLink');if(fb&&SITE.facebook)fb.href=SITE.facebook;
 const li=$('#liLink');if(li&&SITE.linkedin)li.href=SITE.linkedin;
+const db=$('#dbLink');if(db&&SITE.dropbox)db.href=SITE.dropbox;
 
 $('#copyEmail').onclick=async()=>{
   try{await navigator.clipboard.writeText(SITE.email)}

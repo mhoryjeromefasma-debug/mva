@@ -297,3 +297,8 @@ body.fadein .page{animation:fadeIn .7s cubic-bezier(.22,1,.36,1) both}
   .nav-list a:hover{transform:none}
   .nav-list a.active{background:rgba(255,106,0,.12)}
 }
+
+
+/* no decorative line or numbering before labels */
+.kicker::before,.step .kicker::before{display:none}
+.pro-top{justify-content:flex-start}
