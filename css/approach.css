@@ -1,0 +1,21 @@
+/* ================= APPROACH PAGE ================= */
+.approach{display:flex;flex-direction:column;height:100%}
+.track{flex:none;position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-bottom:1.1rem}
+.track::before{content:'';position:absolute;left:1.4rem;right:1.4rem;top:1.4rem;height:1px;background:var(--line)}
+.track .fillbar{position:absolute;left:1.4rem;top:1.4rem;height:1px;width:0;background:var(--y);box-shadow:0 0 12px var(--y);transition:width 2.4s var(--ease) .8s}
+body.ready .track .fillbar{width:calc(100% - 2.8rem)}
+.node{position:relative;z-index:1;width:2.8rem;height:2.8rem;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line2);font:600 .85rem 'Space Grotesk';color:var(--y);transition:background .5s,color .5s,transform .6s var(--ease)}
+.steps{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.step{display:flex;flex-direction:column;padding:1.6rem 1.5rem;min-height:0}
+.step h3{font-size:1.6rem;margin:1rem 0 .7rem;letter-spacing:-.025em}
+.step p{font-size:.88rem;line-height:1.65;color:var(--m);position:relative;z-index:1}
+.step .kicker::before{width:1.4rem}
+.step ul{list-style:none;margin-top:auto;padding-top:1rem;display:grid;gap:.45rem;font-size:.78rem;color:var(--w);position:relative;z-index:1}
+.step li{display:flex;gap:.6rem;align-items:center}
+.step li::before{content:'';width:.4rem;height:.4rem;border-radius:50%;background:var(--y);flex:none}
+
+@media(max-width:900px){
+  .approach,.steps{display:block;height:auto}
+  .track{display:none}
+  .step{margin-bottom:1rem}
+  }
