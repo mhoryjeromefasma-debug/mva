@@ -1,0 +1,304 @@
+/* =====================================================
+   SHARED STYLES  —  sidebar, transitions, buttons, cards
+   Everything is sized in rem and the root font-size follows
+   the screen height, so each page fits the screen with no scroll.
+   ===================================================== */
+:root{
+  --y:#ff6a00; --y2:#ff9248; --ydeep:#b34a00;
+  --bg:#070707; --bg2:#0d0d0b; --card:#111110; --card2:#171714;
+  --w:#f7f3ee; --m:#a39a90; --line:rgba(255,106,0,.16); --line2:rgba(255,106,0,.38);
+  --ease:cubic-bezier(.22,1,.36,1); --ease2:cubic-bezier(.65,0,.35,1);
+  --side:18.5rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@property --grow{syntax:'<number>';inherits:true;initial-value:1}
+html{--grow:1;font-size:calc(clamp(10px,min(2.1vh,1.2vw),20px) * var(--grow));-webkit-text-size-adjust:100%;background:var(--bg)}
+body{height:100vh;height:100dvh;overflow:hidden;display:grid;grid-template-columns:var(--side) 1fr;background:var(--bg);color:var(--w);font-family:'Inter',system-ui,sans-serif;font-size:1rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+a:focus,button:focus{outline:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--y);outline-offset:3px;border-radius:.6rem}
+.side,.pager,.btn,.filter,.chip,.project,.burger,.topbar,.curtain,.intro{-webkit-user-select:none;user-select:none}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;-webkit-tap-highlight-color:transparent}
+svg{display:block}
+::selection{background:var(--y);color:#000}
+.y{color:var(--y)}
+.serif{font-family:'Playfair Display',serif;font-style:italic;font-weight:500}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;line-height:1.05;letter-spacing:-.02em}
+
+/* ---------- ambient ---------- */
+.noise{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.cursor-glow{position:fixed;left:0;top:0;width:34rem;height:34rem;margin:-17rem 0 0 -17rem;border-radius:50%;background:radial-gradient(circle,rgba(255,106,0,.10),transparent 65%);pointer-events:none;z-index:2;opacity:0;transition:opacity .5s;will-change:transform}
+.cursor-glow.on{opacity:1}
+
+/* =====================================================
+   LEFT SIDEBAR NAVIGATION
+   ===================================================== */
+.side{position:relative;z-index:60;height:100vh;height:100dvh;display:flex;flex-direction:column;padding:1.9rem 1.3rem 1.4rem;background:linear-gradient(180deg,#0c0c0a,#070707);border-right:1px solid var(--line);overflow:hidden}
+.side::after{content:'';position:absolute;right:-1px;top:0;bottom:0;width:1px;background:linear-gradient(transparent,var(--y),transparent);opacity:.35}
+.brand{display:flex;align-items:center;gap:1rem;padding:0 .6rem 1.7rem;border-bottom:1px solid var(--line)}
+.brand i{flex:none;width:3.4rem;height:3.4rem;border-radius:1rem;display:grid;place-items:center;background:var(--y);color:#000;font:700 1.2rem 'Space Grotesk';font-style:normal;transition:transform .6s var(--ease)}
+.brand i{overflow:hidden}
+.brand i img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;border-radius:inherit}
+.brand:hover i{transform:rotate(-10deg) scale(1.08)}
+.brand span{display:flex;flex-direction:column;font:600 1rem/1.25 'Space Grotesk';letter-spacing:.08em}
+.brand span small{font:500 .62rem 'Inter';letter-spacing:.28em;color:var(--y);margin-top:.2rem;text-transform:uppercase}
+.nav-list{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:.3rem;padding:.9rem 0 0}
+.nav-list a{position:relative;display:flex;align-items:center;gap:1.1rem;padding:.7rem 1.2rem;border-radius:.9rem;font:500 1.05rem/1.1 'Space Grotesk';letter-spacing:-.01em;color:var(--m);transition:color .35s,background .35s,transform .5s var(--ease)}
+.nav-list a em{font:500 .72rem 'Inter';font-style:normal;letter-spacing:.14em;color:var(--ydeep);width:1.5rem;transition:color .35s}
+.nav-list a::before{content:'';position:absolute;left:0;top:22%;bottom:22%;width:3px;border-radius:3px;background:var(--y);transform:scaleY(0);transition:transform .5s var(--ease)}
+.nav-list a:hover{color:var(--w);transform:translateX(.45rem)}
+.nav-list a:hover em{color:var(--y)}
+.nav-list a.active{color:var(--w);background:rgba(255,106,0,.08)}
+.nav-list a.active::before{transform:scaleY(1)}
+.nav-list a.active em{color:var(--y)}
+.side-foot{padding:1.3rem .6rem 0;border-top:1px solid var(--line)}
+.status{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--m)}
+.status i{width:.55rem;height:.55rem;border-radius:50%;background:#37e07a;animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(55,224,122,.55)}70%,100%{box-shadow:0 0 0 .6rem rgba(55,224,122,0)}}
+.socials{display:flex;gap:.5rem;margin-top:.9rem}
+.social{width:2.3rem;height:2.3rem;border-radius:.7rem;border:1px solid var(--line2);display:grid;place-items:center;color:var(--y);transition:transform .4s var(--ease),background .3s,color .3s}
+.social svg{width:1rem;height:1rem;fill:currentColor}
+.social:hover{background:var(--y);color:#000;transform:translateY(-.25rem) rotate(-6deg)}
+.copy{margin-top:.9rem;font-size:.68rem;color:var(--m);letter-spacing:.04em}
+
+/* mobile top bar (hidden on desktop) */
+.topbar,.burger{display:none}
+
+/* =====================================================
+   PAGE AREA  (never scrolls on desktop)
+   ===================================================== */
+.page{position:relative;z-index:3;height:100vh;height:100dvh;min-width:0;display:flex;flex-direction:column;padding:1.7rem 2.6rem 1.1rem;overflow:hidden}
+.page-body{flex:1;min-height:0;position:relative}
+.head{flex:none;display:flex;justify-content:space-between;align-items:flex-end;gap:2.5rem;margin-bottom:1.5rem}
+.kicker{display:flex;align-items:center;gap:.9rem;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--y);font-weight:600}
+.kicker::before{content:'';width:2.4rem;height:1px;background:var(--y)}
+.head h2{font-size:3.1rem;font-weight:600;letter-spacing:-.035em;margin-top:.9rem}
+.head p{max-width:24rem;color:var(--m);font-size:.9rem;line-height:1.6;padding-bottom:.3rem}
+
+/* prev / next pager */
+.pager{flex:none;display:flex;justify-content:space-between;align-items:center;padding-top:.9rem;margin-top:.9rem;border-top:1px solid var(--line)}
+.pg{display:inline-flex;align-items:center;gap:.8rem;font-size:.85rem;color:var(--m);transition:color .3s}
+.pg b{font-weight:500;color:var(--w)}
+.pg i{width:2.3rem;height:2.3rem;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;font-style:normal;color:var(--y);transition:all .45s var(--ease)}
+.pg:hover{color:var(--y)}
+.pg:hover i{background:var(--y);color:#000}
+.pg.next:hover i{transform:translateX(.3rem)}
+.pg.prev:hover i{transform:translateX(-.3rem)}
+.pg small{display:block;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--ydeep)}
+.pg.next{text-align:right}
+.hint{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--m);opacity:.7}
+.hint kbd{font:inherit;border:1px solid var(--line2);border-radius:.3rem;padding:0 .35rem;margin:0 .1rem;color:var(--y)}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;gap:.7rem;padding:.95rem 1.7rem;border-radius:99px;font-size:.86rem;font-weight:600;border:1px solid var(--line2);overflow:hidden;isolation:isolate;transition:transform .35s var(--ease),color .35s,border-color .35s,box-shadow .35s}
+.btn::before{content:'';position:absolute;inset:0;background:var(--y);transform:translateY(101%);transition:transform .5s var(--ease);z-index:-1;border-radius:inherit}
+.btn:hover::before{transform:none}
+.btn:hover{color:#000;border-color:var(--y)}
+.btn:active{transform:scale(.96)}
+.btn.primary{background:var(--y);color:#000;border-color:var(--y)}
+.btn.primary::before{background:var(--w)}
+.btn.primary:hover{box-shadow:0 1.2rem 2.4rem -.8rem rgba(255,106,0,.55)}
+.btn .arr{transition:transform .4s var(--ease)}
+.btn:hover .arr{transform:translate(.2rem,-.2rem)}
+
+/* ---------- cards ---------- */
+.card{position:relative;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:1.5rem;padding:1.8rem;overflow:hidden;transition:border-color .5s,transform .6s var(--ease),box-shadow .6s}
+.card::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(26rem circle at var(--mx,50%) var(--my,50%),rgba(255,106,0,.09),transparent 60%);opacity:0;transition:opacity .4s;pointer-events:none}
+.card:hover{border-color:var(--line2)}
+.card:hover::after{opacity:1}
+
+/* ---------- entrance animations (start when body.ready) ---------- */
+.a{opacity:0}
+body.ready .a{animation:rise 1s var(--ease) both;animation-delay:var(--d,0s)}
+body.ready .a.l{animation-name:riseL}
+body.ready .a.r{animation-name:riseR}
+body.ready .a.z{animation-name:zoom}
+@keyframes rise{from{opacity:0;transform:translateY(2.2rem)}to{opacity:1;transform:none}}
+@keyframes riseL{from{opacity:0;transform:translateX(-3rem)}to{opacity:1;transform:none}}
+@keyframes riseR{from{opacity:0;transform:translateX(3rem)}to{opacity:1;transform:none}}
+@keyframes zoom{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.mask{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.mask>span{display:block;transform:translateY(110%)}
+body.ready .mask>span{animation:maskUp 1.2s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes maskUp{to{transform:none}}
+body.leaving .page{animation:leave .6s var(--ease) both}
+body.leaving .side{opacity:.85}
+@keyframes leave{to{opacity:0;transform:scale(.985) translateY(-.8rem)}}
+
+/* =====================================================
+   PAGE TRANSITION CURTAIN
+   ===================================================== */
+.curtain{position:fixed;inset:0;z-index:400;display:flex;pointer-events:none}
+.curtain i{flex:1;background:var(--y);transform:scaleY(0);transform-origin:bottom;transition:transform .6s var(--ease2);transition-delay:calc(var(--i)*.06s);margin-right:-1px}
+.curtain i:nth-child(even){background:#e65f00}
+.curtain.on{pointer-events:all}
+.curtain.on i{transform:scaleY(1)}
+.curtain.out i{transform:scaleY(0);transform-origin:top}
+html.cover .curtain i{transform:scaleY(1);transform-origin:top;transition:none}
+.curtain-label{position:absolute;inset:0;display:grid;place-items:center;font:700 clamp(2.6rem,8vw,7rem) 'Space Grotesk';letter-spacing:-.04em;color:#000;opacity:0;transition:opacity .35s .25s}
+.curtain.on .curtain-label,html.cover .curtain-label{opacity:1}
+html.cover .curtain-label{transition:none}
+.curtain.out .curtain-label{opacity:0;transition:opacity .3s}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;z-index:300;bottom:1.6rem;left:50%;transform:translate(-50%,2rem);opacity:0;background:var(--y);color:#000;padding:.8rem 1.5rem;border-radius:99px;font-size:.85rem;font-weight:600;transition:all .5s var(--ease);max-width:90%;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* =====================================================
+   MOBILE / SMALL SCREENS  (menu slides in, page may scroll)
+   ===================================================== */
+@media(max-width:900px){
+  html{font-size:16px}
+  body{display:block;height:auto;min-height:100dvh;overflow-x:hidden;overflow-y:auto}
+  .topbar{position:fixed;inset:0 0 auto;z-index:120;height:4.2rem;display:flex;align-items:center;justify-content:space-between;padding:0 1.1rem;background:rgba(7,7,7,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .topbar .brand{padding:0;border:0;gap:.8rem}.topbar .brand i{width:2.5rem;height:2.5rem;font-size:.95rem;border-radius:.75rem}.topbar .brand span{font-size:.8rem}.topbar .brand span small{display:none}
+  .burger{display:block;position:relative;width:2.8rem;height:2.8rem;border:1px solid var(--line2);border-radius:.9rem}
+  .burger span{position:absolute;left:.8rem;right:.8rem;height:1.5px;background:var(--y);transition:transform .4s var(--ease),opacity .3s}
+  .burger span:nth-child(1){top:1rem}.burger span:nth-child(2){top:1.35rem}.burger span:nth-child(3){top:1.7rem}
+  body.menu-open .burger span:nth-child(1){transform:translateY(.35rem) rotate(45deg)}
+  body.menu-open .burger span:nth-child(2){opacity:0}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-.35rem) rotate(-45deg)}
+  .side{position:fixed;inset:0;width:100%;height:100dvh;z-index:110;padding:5.5rem 1.4rem 1.4rem;transform:translateX(-100%);transition:transform .7s var(--ease);overflow-y:auto}
+  body.menu-open .side{transform:none}
+  .side .brand{display:none}
+  .nav-list a{font-size:1.3rem;padding:.9rem 1.1rem}
+  .page{height:auto;min-height:100dvh;overflow:visible;padding:5.6rem 1.2rem 1.6rem}
+  .page-body{flex:none}
+  .head{flex-direction:column;align-items:flex-start;gap:.8rem}
+  .head h2{font-size:2.3rem}
+  .hint{display:none}
+  .cursor-glow{display:none}
+}
+@media(hover:none){.cursor-glow{display:none}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .a{opacity:1}.mask>span{transform:none}
+}
+
+/* =====================================================
+   AUTO-HIDE SIDEBAR (desktop with mouse)
+   Collapsed: only a small menu icon, no line, no panel — the page
+   uses the whole width and its text is a bit bigger.
+   Mouse on the left: the menu grows open, the page shrinks to make room.
+   (html.side-open is toggled in js/main.js)
+   ===================================================== */
+@media (min-width:901px){
+  html{--grow:1.07;transition:--grow .9s cubic-bezier(.22,1,.36,1)}
+  html.side-open{--grow:1}
+  body{grid-template-columns:4.6rem 1fr;transition:grid-template-columns .9s cubic-bezier(.22,1,.36,1)}
+  html.side-open body{grid-template-columns:var(--side) 1fr}
+
+  .side{background:rgba(10,10,9,0);border-right-color:transparent;transition:background-color .7s ease,border-color .7s ease}
+  .side::after{opacity:0;transition:opacity .7s ease}
+  html.side-open .side{background:rgba(10,10,9,1);border-right-color:var(--line)}
+  html.side-open .side::after{opacity:.35}
+
+  .side .brand,.side .nav-list,.side .side-foot{
+    width:15.9rem;flex:none;
+    opacity:0;transform:translateX(-1.4rem) scale(.82);transform-origin:left center;filter:blur(8px);
+    transition:opacity .6s ease,transform .9s var(--ease),filter .6s ease;pointer-events:none
+  }
+  .side .nav-list{flex:1 1 auto}
+  html.side-open .side .brand,html.side-open .side .nav-list,html.side-open .side .side-foot{opacity:1;transform:none;filter:none;pointer-events:auto}
+  html.side-open .side .nav-list{transition-delay:.08s}
+  html.side-open .side .side-foot{transition-delay:.18s}
+  /* each menu word pops in one after another */
+  html.side-open .side .nav-list a{animation:navPop .75s var(--ease) backwards}
+  html.side-open .side .nav-list a:nth-child(1){animation-delay:.14s}
+  html.side-open .side .nav-list a:nth-child(2){animation-delay:.21s}
+  html.side-open .side .nav-list a:nth-child(3){animation-delay:.28s}
+  html.side-open .side .nav-list a:nth-child(4){animation-delay:.35s}
+  html.side-open .side .nav-list a:nth-child(5){animation-delay:.42s}
+  html.side-open .side .nav-list a:nth-child(6){animation-delay:.49s}
+  @keyframes navPop{from{opacity:0;transform:translateX(-1.6rem) scale(.6);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+
+  /* menu icon shown while collapsed */
+  .side::before{content:'';position:absolute;left:50%;top:50%;z-index:2;width:2.5rem;height:2.5rem;margin:-1.25rem 0 0 -1.25rem;border:1px solid var(--line2);border-radius:.85rem;
+    background:
+      linear-gradient(var(--y),var(--y)) 50% 32%/1.15rem 2px no-repeat,
+      linear-gradient(var(--y),var(--y)) 38% 50%/.7rem 2px no-repeat,
+      linear-gradient(var(--y),var(--y)) 50% 68%/1.15rem 2px no-repeat,
+      rgba(255,106,0,.06);
+    box-shadow:0 0 0 0 rgba(255,106,0,.4);pointer-events:none;opacity:1;transform:scale(1);
+    transition:opacity .35s ease,transform .6s var(--ease);animation:iconPulse 2.8s ease-in-out infinite}
+  html.side-open .side::before{opacity:0;transform:scale(.4) rotate(90deg);animation:none}
+  @keyframes iconPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,106,0,.35)}60%{box-shadow:0 0 0 .7rem rgba(255,106,0,0)}}
+}
+
+
+/* =====================================================
+   SMOOTH MENU  — the sidebar now just SLIDES over the page (transform only).
+   Before: every hover re-laid-out the whole site (grid width + root font-size
+   transitions) on every frame = lag.
+   ===================================================== */
+@media (min-width:901px){
+  html,html.side-open{--grow:1.07;transition:none}
+  body,html.side-open body{grid-template-columns:4.6rem 1fr;transition:none}
+  .page{grid-column:2}
+  .side{position:fixed;left:0;top:0;width:var(--side);transform:translate3d(calc(4.6rem - var(--side)),0,0);
+    transition:transform .5s var(--ease),background-color .35s ease,border-color .35s ease;will-change:transform}
+  html.side-open .side{transform:none}
+  .side::before{left:calc(var(--side) - 2.3rem)}
+  .side .brand,.side .nav-list,.side .side-foot,html.side-open .side .brand,html.side-open .side .nav-list,html.side-open .side .side-foot{filter:none}
+  .side .brand,.side .nav-list,.side .side-foot{transform:translate3d(-1rem,0,0);transition:opacity .4s ease,transform .5s var(--ease)}
+  html.side-open .side .brand,html.side-open .side .nav-list,html.side-open .side .side-foot{transform:none}
+  @keyframes navPop{from{opacity:0;transform:translate3d(-1rem,0,0)}to{opacity:1;transform:none}}
+  .page.m-only{display:none}
+}
+@media(min-width:901px){.page.m-only{display:none}}
+
+/* PHONE: one long page, scroll down only */
+@media(max-width:900px){
+  .topbar{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,7,7,.97)}
+  html{scroll-behavior:smooth}
+  .page.m-only{min-height:0;padding-top:2.8rem;margin-top:.4rem;border-top:1px solid var(--line);scroll-margin-top:4.2rem}
+  #home{scroll-margin-top:0}
+  body.ready .m-only .a{animation:none!important;opacity:0;transform:translate3d(0,1.4rem,0);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
+  body.ready .m-only .a.in{opacity:1;transform:none}
+  .m-only .pager{display:none}
+}
+@media(max-width:900px){.topbar{background:#070707}}
+
+/* =====================================================
+   PAGE TRANSITION = smooth fade (no more colour curtain)
+   Old page fades away, new page fades in. Opacity + transform only.
+   ===================================================== */
+.curtain{display:none!important}
+body.leaving .page{animation:fadeAway .45s cubic-bezier(.4,0,.2,1) both!important;pointer-events:none}
+body.leaving .side{opacity:1}
+@keyframes fadeAway{to{opacity:0;transform:translate3d(0,-.6rem,0)}}
+body.fadein .page{animation:fadeIn .7s cubic-bezier(.22,1,.36,1) both}
+@keyframes fadeIn{from{opacity:0;transform:translate3d(0,.8rem,0)}to{opacity:1;transform:none}}
+
+
+/* =====================================================
+   PHONE MENU: small dropdown under the menu button (top right).
+   The page stays visible behind it. Tap outside or scroll to close.
+   ===================================================== */
+@media(max-width:900px){
+  .side{
+    position:fixed;inset:auto;top:4.7rem;right:.9rem;left:auto;
+    width:min(14.5rem,calc(100vw - 1.8rem));height:auto;max-height:calc(100dvh - 6rem);
+    padding:.5rem;border:1px solid var(--line2);border-radius:1.1rem;
+    background:#0c0c0a;box-shadow:0 1.2rem 2.4rem rgba(0,0,0,.65);
+    z-index:130;overflow:hidden;
+    opacity:0;visibility:hidden;pointer-events:none;
+    transform:translate3d(0,-.5rem,0) scale(.97);transform-origin:top right;
+    transition:opacity .25s ease,transform .3s var(--ease),visibility 0s linear .3s;
+  }
+  body.menu-open .side{
+    opacity:1;visibility:visible;pointer-events:auto;transform:none;
+    transition:opacity .25s ease,transform .3s var(--ease),visibility 0s;
+  }
+  .side::before,.side::after{display:none}
+  .side .brand,.side .side-foot{display:none}
+  .nav-list{flex:none;min-height:0;padding:0;gap:.15rem}
+  .nav-list a{font-size:1rem;padding:.75rem .9rem;color:var(--w)}
+  .nav-list a:hover{transform:none}
+  .nav-list a.active{background:rgba(255,106,0,.12)}
+}
+
+
+/* no decorative line or numbering before labels */
+.kicker::before,.step .kicker::before{display:none}
+.pro-top{justify-content:flex-start}

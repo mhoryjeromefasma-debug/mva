@@ -1,0 +1,216 @@
+/* ================= HOME PAGE ================= */
+.bgfx{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.page-body{z-index:1}
+.hgrid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,106,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,106,0,.05) 1px,transparent 1px);background-size:4rem 4rem;mask-image:radial-gradient(ellipse at 75% 40%,#000,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 75% 40%,#000,transparent 70%)}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none}
+.orb.o1{width:34rem;height:34rem;right:-8rem;top:-4rem;background:rgba(255,106,0,.15);animation:drift 14s ease-in-out infinite}
+.orb.o2{width:22rem;height:22rem;left:-6rem;bottom:-5rem;background:rgba(255,106,0,.07);animation:drift 18s ease-in-out infinite reverse}
+@keyframes drift{50%{transform:translate(-2.5rem,2rem) scale(1.08)}}
+
+.home{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:2rem;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem .95rem;border:1px solid var(--line2);border-radius:99px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--y);background:rgba(255,106,0,.05)}
+.badge i{width:.5rem;height:.5rem;border-radius:50%;background:#37e07a;animation:ping 2s infinite}
+.hello{margin:1.2rem 0 .2rem;font-size:1rem;color:var(--m)}
+.home h1{font-size:3.5rem;font-weight:700;letter-spacing:-.045em;line-height:.96}
+.home h1 .l2{color:var(--y)}
+.role-line{margin-top:1rem;font-size:1rem;display:flex;gap:.7rem;flex-wrap:wrap;align-items:baseline}
+.typed{color:var(--y);font-weight:500;min-height:1.5em}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--y);margin-left:3px;vertical-align:-.15em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-p{max-width:32rem;margin-top:.8rem;color:var(--m);font-size:.86rem;line-height:1.65}
+.actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.4rem}
+.actions .btn{padding:.75rem 1.3rem;font-size:.78rem}
+.hero-meta{display:flex;gap:2rem;flex-wrap:wrap;margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--line)}
+.hero-meta div{font-size:.66rem;color:var(--m);letter-spacing:.04em}
+.hero-meta b{display:block;color:var(--w);font:600 .82rem 'Space Grotesk';margin-bottom:.1rem}
+
+/* profile card */
+.id-wrap{perspective:1200px;display:flex;justify-content:center}
+.id-card{position:relative;width:100%;max-width:23rem;aspect-ratio:4/5;border-radius:1.8rem;border:1px solid var(--line2);background:linear-gradient(160deg,#1c130b,#0b0b09 55%,#150d06);overflow:hidden;transform-style:preserve-3d;transition:transform .25s ease-out,box-shadow .5s;box-shadow:0 2.5rem 5rem -2rem rgba(0,0,0,.9)}
+.id-card:hover{box-shadow:0 2.5rem 6rem -2rem rgba(255,106,0,.28)}
+.id-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(255,106,0,.22),transparent 55%)}
+.id-ring{position:absolute;left:50%;top:44%;border-radius:50%;border:1px solid rgba(255,106,0,.22);transform:translate(-50%,-50%)}
+.id-ring.r1{width:62%;aspect-ratio:1}
+.id-ring.r2{width:88%;aspect-ratio:1;border-style:dashed;animation:spin 40s linear infinite}
+.id-ring.r2::after{content:'';position:absolute;top:50%;right:-5px;width:9px;height:9px;border-radius:50%;background:var(--y);box-shadow:0 0 18px var(--y)}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.id-mono{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font:700 5.6rem 'Space Grotesk';letter-spacing:-.06em;color:var(--y);text-shadow:0 0 60px rgba(255,106,0,.35)}
+.id-photo{position:absolute;left:50%;top:44%;width:58%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;object-fit:cover;object-position:50% 20%;border:2px solid var(--y);box-shadow:0 0 50px rgba(255,106,0,.3)}
+.id-foot{position:absolute;left:0;right:0;bottom:0;padding:1.3rem 1.4rem;background:linear-gradient(transparent,rgba(0,0,0,.88) 60%)}
+.id-foot small{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--y)}
+.id-foot strong{display:block;font:600 1.15rem 'Space Grotesk';margin-top:.2rem}
+.id-foot span{font-size:.75rem;color:var(--m)}
+.float-tag{position:absolute;padding:.55rem .85rem;border-radius:.9rem;background:rgba(17,17,16,.88);border:1px solid var(--line2);backdrop-filter:blur(10px);font-size:.72rem;display:flex;gap:.5rem;white-space:nowrap;animation:bob 6s ease-in-out infinite}
+.float-tag b{color:var(--y);font-weight:600}
+.float-tag.t1{left:1rem;top:12%}
+.float-tag.t2{right:1rem;top:66%;animation-delay:-2.5s}
+@keyframes bob{50%{transform:translateY(-.7rem)}}
+
+/* ---------- welcome intro (first visit only) ---------- */
+.intro{position:fixed;inset:0;z-index:500;display:grid;place-items:center;overflow:hidden;background:#050505}
+.intro .pl,.intro .pr{position:absolute;top:0;bottom:0;width:50.5%;background:#050505;z-index:3;transition:transform 1s var(--ease2)}
+.intro .pl{left:0}.intro .pr{right:0}
+.intro.open .pl{transform:translateX(-101%)}.intro.open .pr{transform:translateX(101%)}
+.intro-bg{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,106,0,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,106,0,.07) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(circle,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(circle,#000 10%,transparent 70%);animation:gridMove 10s linear infinite}
+@keyframes gridMove{to{background-position:56px 56px}}
+.intro-ring{position:absolute;z-index:2;width:min(80vw,560px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,106,0,.25);animation:ringSpin 14s linear infinite}
+.intro-ring::before{content:'';position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--y);box-shadow:0 0 24px var(--y)}
+.intro-ring.r2{width:min(58vw,390px);animation-direction:reverse;animation-duration:9s;border-style:dashed;border-color:rgba(255,106,0,.18)}
+.intro-ring.r2::before{display:none}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+.intro-inner{position:relative;z-index:4;text-align:center;padding:24px;transition:opacity .45s,transform .6s var(--ease)}
+.intro.open .intro-inner{opacity:0;transform:scale(.94)}
+.monogram{width:68px;height:68px;margin:0 auto 26px;display:grid;place-items:center;border:1px solid var(--y);border-radius:20px;font:700 22px 'Space Grotesk';color:var(--y);box-shadow:0 0 40px rgba(255,106,0,.2);opacity:0;animation:monoIn .9s .2s var(--ease) forwards}
+@keyframes monoIn{from{opacity:0;transform:translateY(20px) rotate(-12deg)}to{opacity:1;transform:rotate(-6deg)}}
+.intro-small{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--m);opacity:0;animation:fadeUp .8s .55s var(--ease) forwards}
+.intro-name{margin:14px 0 8px;font:700 clamp(34px,8vw,88px)/1 'Space Grotesk';letter-spacing:-.03em;display:flex;flex-wrap:wrap;justify-content:center;gap:0 .28em}
+.intro-name .word{display:inline-flex;overflow:hidden;padding-bottom:.08em}
+.intro-name .ch{display:inline-block;transform:translateY(110%);animation:chUp .8s var(--ease) forwards}
+.intro-name .word:last-child .ch{color:var(--y)}
+@keyframes chUp{to{transform:none}}
+.intro-role{font-size:13px;color:var(--m);letter-spacing:.22em;text-transform:uppercase;opacity:0;animation:fadeUp .8s 1.5s var(--ease) forwards}
+.intro-bar{width:min(260px,65vw);height:2px;background:rgba(255,106,0,.15);margin:30px auto 24px;overflow:hidden;border-radius:4px}
+.intro-bar span{display:block;height:100%;background:var(--y);transform:translateX(-100%);animation:load 2.6s .4s var(--ease2) forwards}
+@keyframes load{to{transform:none}}
+.intro-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:99px;background:var(--y);color:#000;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:0;animation:fadeUp .8s 1.9s var(--ease) forwards;transition:transform .3s var(--ease),box-shadow .3s}
+.intro-btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px -8px rgba(255,106,0,.6)}
+.intro-btn:active{transform:scale(.96)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+@media(max-width:900px){
+  .home{grid-template-columns:1fr;gap:2rem}
+  .home h1{font-size:2.6rem}
+  .id-card{max-width:20rem;margin-inline:auto}
+  .hello{margin-top:1.2rem}
+  .role-line{font-size:1.05rem}
+  .hero-meta{margin-top:1.5rem}
+}
+
+/* ---------- NEW welcome screen: HELLO / WELCOME / click here ---------- */
+.intro-glow{position:absolute;z-index:1;left:50%;top:42%;width:min(90vw,820px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,106,0,.16),transparent 62%);animation:glowPulse 4s ease-in-out infinite}
+@keyframes glowPulse{50%{opacity:.55;transform:translate(-50%,-50%) scale(1.12)}}
+.greet-float{position:absolute;inset:0;z-index:2;pointer-events:none}
+.greet-float span{position:absolute;left:var(--x);top:var(--y);font:500 clamp(14px,2.4vh,26px) 'Space Grotesk';letter-spacing:.12em;color:rgba(255,106,0,.0);animation:greet 6s var(--t) ease-in-out infinite}
+@keyframes greet{0%{opacity:0;transform:translateY(14px);color:rgba(255,106,0,0)}25%,60%{color:rgba(255,106,0,.38);transform:none}100%{opacity:1;color:rgba(255,106,0,0);transform:translateY(-14px)}}
+.intro-inner{display:flex;flex-direction:column;align-items:center;width:100%;max-width:900px}
+.intro-photo{position:relative;width:clamp(86px,17vh,160px);aspect-ratio:1;margin-bottom:clamp(10px,2.4vh,24px);opacity:0;animation:photoIn 1s .1s var(--ease) forwards}
+@keyframes photoIn{from{opacity:0;transform:scale(.4) rotate(-20deg)}to{opacity:1;transform:none}}
+.intro-photo img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 20%;border:2px solid var(--y);box-shadow:0 0 50px rgba(255,106,0,.35)}
+.intro-photo .ring{position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid rgba(255,106,0,.4);transform:translate(-50%,-50%)}
+.intro-photo .ra{width:128%;aspect-ratio:1;border-style:dashed;animation:ringSpin 12s linear infinite}
+.intro-photo .ra::before{content:'';position:absolute;top:-4px;left:50%;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--y);box-shadow:0 0 16px var(--y)}
+.intro-photo .rb{width:158%;aspect-ratio:1;border-color:rgba(255,106,0,.15);animation:ringSpin 20s linear infinite reverse}
+.hello-big,.welcome-big{display:flex;justify-content:center}
+.hello-big{font:700 clamp(54px,min(19vw,19vh),190px)/.95 'Space Grotesk';letter-spacing:-.04em;color:var(--w);text-shadow:0 0 70px rgba(255,106,0,.25)}
+.welcome-big{margin-top:clamp(6px,1.4vh,14px);font:600 clamp(18px,min(5.4vw,5.6vh),54px)/1 'Space Grotesk';letter-spacing:.38em;margin-right:-.38em;color:var(--y)}
+.hello-big .lt,.welcome-big .lt{display:inline-block;opacity:0}
+.hello-big .lt{animation:helloIn .9s var(--ease) forwards}
+@keyframes helloIn{0%{opacity:0;transform:translateY(60%) rotate(8deg) scale(.7);filter:blur(10px)}100%{opacity:1;transform:none;filter:none}}
+.hello-big .dot{color:var(--y)}
+.welcome-big .lt{animation:welIn .7s var(--ease) forwards,shimmer 3s 3s ease-in-out infinite}
+@keyframes welIn{0%{opacity:0;transform:translateX(-18px);filter:blur(6px)}100%{opacity:1;transform:none;filter:none}}
+@keyframes shimmer{0%,100%{color:var(--y)}50%{color:#ffd0ad;text-shadow:0 0 24px rgba(255,106,0,.8)}}
+.intro-small{margin-top:clamp(10px,2vh,20px);font-size:clamp(10px,1.7vh,13px);letter-spacing:.3em;text-transform:uppercase;color:var(--m);opacity:0;animation:fadeUp .8s 2.1s var(--ease) forwards}
+.intro-small b{color:var(--w);font-weight:600}
+.intro-btn{position:relative;margin-top:clamp(16px,3.4vh,34px);padding:clamp(12px,2vh,17px) clamp(26px,4vh,40px);font-size:clamp(11px,1.8vh,14px);letter-spacing:.2em;opacity:0;animation:fadeUp .8s 2.7s var(--ease) forwards,btnFloat 2.4s 3.5s ease-in-out infinite}
+@keyframes btnFloat{50%{transform:translateY(-6px)}}
+.intro-btn .pulse{position:absolute;inset:0;border-radius:inherit;border:2px solid var(--y);animation:btnPulse 1.8s 3.4s ease-out infinite;pointer-events:none}
+@keyframes btnPulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.55,1.9);opacity:0}}
+.intro-btn .cur{display:inline-block;animation:curNudge 1.2s 3.5s ease-in-out infinite}
+@keyframes curNudge{50%{transform:translate(4px,-4px)}}
+.intro-hint{margin-top:clamp(8px,1.6vh,14px);font-size:clamp(9px,1.4vh,11px);letter-spacing:.24em;text-transform:uppercase;color:var(--m);opacity:0;animation:fadeUp .8s 3.2s var(--ease) forwards}
+.intro-btn:hover{animation:fadeUp .8s 2.7s var(--ease) forwards}
+
+/* WELCOME is now the main headline (HELLO removed) */
+.welcome-big{margin-top:0;font:700 clamp(40px,min(12vw,14vh),140px)/1 'Space Grotesk';letter-spacing:.14em;margin-right:-.14em;text-shadow:0 0 60px rgba(255,106,0,.3)}
+.welcome-big .lt{animation:welIn .8s var(--ease) forwards,shimmer 3s 2s ease-in-out infinite}
+.intro-small{animation-delay:1.5s;margin-top:clamp(14px,2.6vh,26px)}
+.intro-btn{animation:fadeUp .8s 2s var(--ease) forwards,btnFloat 2.4s 2.8s ease-in-out infinite}
+.intro-btn .pulse{animation-delay:2.7s}
+.intro-btn .cur{animation-delay:2.8s}
+.intro-btn:hover{animation:fadeUp .8s 2s var(--ease) forwards}
+.intro-hint{animation-delay:2.5s}
+
+/* ---------- smooth opening (click here -> portfolio) ---------- */
+.intro .pl,.intro .pr{z-index:0;transition:transform 1.5s cubic-bezier(.77,0,.18,1) .3s,box-shadow 1s .3s}
+.intro-bg,.intro-glow,.intro-ring,.greet-float{transition:opacity .7s ease}
+.intro.open{background:transparent;pointer-events:none}
+.intro.open .pl{box-shadow:6px 0 70px rgba(255,106,0,.35)}
+.intro.open .pr{box-shadow:-6px 0 70px rgba(255,106,0,.35)}
+.intro.open .intro-bg,.intro.open .intro-glow,.intro.open .intro-ring,.intro.open .greet-float{opacity:0}
+.intro .intro-inner{transition:opacity .55s ease,transform 1s var(--ease),filter .55s ease}
+.intro.open .intro-inner{opacity:0;transform:scale(1.15);filter:blur(10px)}
+.intro.open .intro-btn,.intro.open .intro-photo{animation:none}
+/* the site settles in behind the opening doors */
+body.opening .page,body.opening .side{animation:siteSettle 1.9s .2s cubic-bezier(.22,1,.36,1) both}
+@keyframes siteSettle{from{opacity:0;transform:scale(1.06);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+
+/* =====================================================
+   SMOOTH-INTRO PERFORMANCE PASS
+   Only GPU-friendly properties (transform + opacity) are animated.
+   No animated blur, no animated box/text-shadow, no animated backgrounds.
+   ===================================================== */
+.noise{transform:translateZ(0)}
+
+/* blurred orbs -> cheap radial gradients (no filter:blur) */
+.orb{filter:none;will-change:transform}
+.orb.o1{background:radial-gradient(circle,rgba(255,106,0,.16),transparent 68%)}
+.orb.o2{background:radial-gradient(circle,rgba(255,106,0,.09),transparent 68%)}
+
+/* no backdrop-filter on the floating tags (it re-blurs every frame while they bob) */
+.float-tag{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(17,17,16,.94);will-change:transform}
+
+/* intro: promote moving parts to the GPU */
+.intro .pl,.intro .pr{will-change:transform;backface-visibility:hidden;box-shadow:none!important;transition:transform 1.3s cubic-bezier(.77,0,.18,1) .2s}
+.intro-inner,.intro-photo,.intro-glow,.intro-ring,.intro-photo .ring{will-change:transform,opacity}
+.intro-btn,.intro-small,.intro-hint,.greet-float span{will-change:transform,opacity}
+.welcome-big .lt{will-change:transform,opacity}
+
+/* grid: static (animating background-position repaints the whole screen every frame) */
+.intro-bg{animation:none}
+
+/* WELCOME letters: slide + fade only (blur and text-shadow removed) */
+.welcome-big{text-shadow:none}
+@keyframes welIn{0%{opacity:0;transform:translate3d(-18px,0,0)}100%{opacity:1;transform:none}}
+@keyframes helloIn{0%{opacity:0;transform:translate3d(0,60%,0) scale(.7)}100%{opacity:1;transform:none}}
+@keyframes shimmer{0%,100%{color:var(--y)}50%{color:#ffd0ad}}
+
+/* floating greetings: opacity only, colour is fixed */
+.greet-float span{color:rgba(255,106,0,.55)}
+@keyframes greet{0%{opacity:0;transform:translate3d(0,14px,0)}25%,60%{opacity:.7;transform:none}100%{opacity:0;transform:translate3d(0,-14px,0)}}
+
+/* opening: doors slide, content fades + gently scales (no blur) */
+.intro .intro-inner{transition:opacity .5s ease,transform .9s var(--ease)}
+.intro.open .intro-inner{opacity:0;transform:scale(1.08);filter:none}
+
+/* site reveal behind the doors: fade + tiny lift, no scale/blur on the huge page layers */
+@keyframes siteSettle{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+body.opening .page,body.opening .side{animation:siteSettle 1.1s .25s cubic-bezier(.22,1,.36,1) both}
+
+/* =====================================================
+   SMOOTH-INTRO PASS 2  —  do less work while the intro plays
+   ===================================================== */
+/* 1) The site sits UNDER the intro: don't let the browser paint/animate it until the doors open */
+body:has(#intro:not(.open)) .page,
+body:has(#intro:not(.open)) .side,
+body:has(#intro:not(.open)) .topbar,
+body:has(#intro:not(.open)) .cursor-glow{visibility:hidden}
+body.opening .page,body.opening .side,body.opening .topbar{visibility:visible!important}
+
+/* 2) no extra fade layer on the huge page/side panels (items inside already animate in) */
+body.opening .page,body.opening .side{animation:none}
+
+/* 3) intro grid: no mask layer — a gradient overlay fades the grid out instead */
+.intro-bg{-webkit-mask-image:none;mask-image:none;
+  background-image:radial-gradient(circle at 50% 45%,transparent 8%,#050505 72%),
+  linear-gradient(rgba(255,106,0,.07) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,106,0,.07) 1px,transparent 1px);
+  background-size:100% 100%,56px 56px,56px 56px}
+
+/* 4) drop the endless background decorations in the intro */
+.greet-float{display:none}
+.intro-photo .rb{display:none}
+
+/* 5) WELCOME: one clean entrance, then still (no endless colour repaint) */
+.welcome-big .lt{animation:welIn .8s var(--ease) forwards}
+.intro-btn .pulse{will-change:transform,opacity}

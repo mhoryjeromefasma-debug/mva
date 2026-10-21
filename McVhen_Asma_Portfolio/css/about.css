@@ -1,0 +1,31 @@
+/* ================= ABOUT PAGE ================= */
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:1.3rem;height:100%}
+.about .card{display:flex;flex-direction:column;min-height:0}
+.lead{font-size:1.42rem;line-height:1.45;font-weight:300;letter-spacing:-.01em}
+.lead b{font-weight:600;color:var(--y)}
+.about-copy p.t{color:var(--m);margin-top:1.1rem;font-size:.94rem;line-height:1.7}
+.about-copy p.t b{color:var(--w);font-weight:500}
+.sign{margin-top:auto;padding-top:1.2rem;border-top:1px solid var(--line);display:flex;align-items:center;gap:1.1rem}
+.sign .serif{font-size:1.9rem;color:var(--y);line-height:1}
+.sign small{display:block;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--m)}
+.about-copy .lead+p.t{margin-top:1.2rem}
+.about-copy .gap{height:1.1rem}
+
+.facts{display:grid}
+.fact{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.fact:first-child{padding-top:0}
+.fact span{color:var(--m)}
+.fact b{font-weight:500;text-align:right}
+.fact b.ok{color:#37e07a}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:auto;padding-top:.9rem}
+.stat{padding:.7rem 1rem;border-radius:1rem;background:rgba(255,106,0,.045);border:1px solid var(--line);transition:transform .5s var(--ease),border-color .4s}
+.stat:hover{transform:translateY(-.25rem);border-color:var(--line2)}
+.stat strong{display:block;font:600 1.75rem 'Space Grotesk';color:var(--y);line-height:1}
+.stat span{display:block;margin-top:.25rem;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--m)}
+
+@media(max-width:900px){
+  .about{grid-template-columns:1fr;height:auto}
+  .lead{font-size:1.2rem}
+  .sign{margin-top:1.6rem}
+  .stats{margin-top:1.4rem}
+}
